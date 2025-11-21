@@ -26,15 +26,9 @@ This configuration is easy to install, easy to extend, and includes an extensive
 
 ---
 
-<div align="center">
-  <p>
-    <img src="/images/cattpuccin_theme_dark.png" width="40%" style="display:inline-block; margin-right:10px;" />
-    <img src="/images/cattpuccin_theme_light.png" width="40%" style="display:inline-block;" />
-  </p>
-  <p>
-    <em>Neovim startup view: dark (left) and light (right)</em>
-  </p>
-</div>
+| Dark Theme                                                | Light Theme                                                |
+| --------------------------------------------------------- | ---------------------------------------------------------- |
+| <img src="/images/cattpuccin_theme_dark.png" width="50%"> | <img src="/images/cattpuccin_theme_light.png" width="50%"> |
 
 ---
 

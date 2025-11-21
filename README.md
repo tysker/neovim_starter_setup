@@ -27,12 +27,12 @@ This configuration is easy to install, easy to extend, and includes an extensive
 ---
 
 <div align="center">
-  <p>
-    <img src="/images/cattpuccin_theme_dark.png" width="50%" />
+  <p align="left">
+    <img src="/images/cattpuccin_theme_dark.png" width="40%" />
     <br/><em>Neovim startup view dark</em>
   </p>
-  <p>
-    <img src="/images/cattpuccin_theme_light.png" width="50%" />
+  <p align="right">
+    <img src="/images/cattpuccin_theme_light.png" width="40%" />
     <br/><em>Neovim startup view light</em>
   </p>
 </div>

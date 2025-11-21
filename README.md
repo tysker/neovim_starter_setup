@@ -26,9 +26,9 @@ This configuration is easy to install, easy to extend, and includes an extensive
 
 ---
 
-| Dark Theme                                                | Light Theme                                                |
-| --------------------------------------------------------- | ---------------------------------------------------------- |
-| <img src="/images/cattpuccin_theme_dark.png" width="50%"> | <img src="/images/cattpuccin_theme_light.png" width="50%"> |
+| Dark Theme                                                               | Light Theme                                                |
+| ------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| <img src="/images/cattpuccin_theme_dark.png" align="center" width="50%"> | <img src="/images/cattpuccin_theme_light.png" width="50%"> |
 
 ---
 

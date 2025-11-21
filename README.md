@@ -26,10 +26,16 @@ This configuration is easy to install, easy to extend, and includes an extensive
 
 ---
 
-<p align="center">
-  <img src="/images/nvim_pic_04.png" width="50%" />
-  <br/><em>Neovim startup view</em>
-</p>
+<div align="center">
+  <p>
+    <img src="/images/cattpuccin_theme_dark.png" width="50%" />
+    <br/><em>Neovim startup view dark</em>
+  </p>
+  <p>
+    <img src="/images/cattpuccin_theme_light.png" width="50%" />
+    <br/><em>Neovim startup view light</em>
+  </p>
+</div>
 
 ---
 
@@ -76,6 +82,9 @@ This configuration requires a few external tools depending on what languages you
   ```lua
   vim.g.have_nerd_font = true
   ```
+
+Inside the themes folder, you will find two themes. The cattpuccin is selected as default. You can always toggle the theme by uncomment the require field inside init.lua and vice versa.
+When using the cattpuccin theme, it is possible to switch from mocca to light by usingthe <leader>bg keys.
 
 ---
 

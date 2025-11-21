@@ -35,7 +35,6 @@ require('lazy').setup({
   -- FIRST ARGUMENT: Plugin specs
   require 'plugins.neotree',
   require 'plugins.treesitter',
-  require 'plugins.colortheme',
   require 'plugins.bufferline',
   require 'plugins.lualine',
   require 'plugins.telescope',
@@ -48,6 +47,10 @@ require('lazy').setup({
   require 'plugins.mischellaneous',
   require 'plugins.comment',
   require 'plugins.rainbowbrackets',
+
+  -- Themes
+  require 'themes.catppuccintheme',
+  -- require 'plugins.nordtheme',
 }, {
 
   -- =====================================================

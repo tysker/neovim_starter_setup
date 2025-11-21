@@ -27,11 +27,11 @@ This configuration is easy to install, easy to extend, and includes an extensive
 ---
 
 <div align="center">
-  <p align="left">
+  <p>
     <img src="/images/cattpuccin_theme_dark.png" width="40%" />
     <br/><em>Neovim startup view dark</em>
   </p>
-  <p align="right">
+  <p>
     <img src="/images/cattpuccin_theme_light.png" width="40%" />
     <br/><em>Neovim startup view light</em>
   </p>
@@ -124,6 +124,13 @@ lazy.nvim will automatically install all plugins.
 
 ```
 ~/.config/nvim
+├── images
+│   ├── cattpuccin_theme_dark.png
+│   ├── cattpuccin_theme_light.png
+│   ├── nordtheme.png
+│   ├── nvim_pic_01.png
+│   ├── nvim_pic_02.png
+│   └── nvim_pic_03.png
 ├── init.lua
 ├── lazy-lock.json
 ├── lua
@@ -131,22 +138,26 @@ lazy.nvim will automatically install all plugins.
 │   │   ├── keymaps.lua
 │   │   ├── options.lua
 │   │   └── snippets.lua
-│   └── plugins
-│       ├── alpha.lua
-│       ├── autocompletion.lua
-│       ├── autoformatting.lua
-│       ├── bufferline.lua
-│       ├── colortheme.lua
-│       ├── comment.lua
-│       ├── gitsigns.lua
-│       ├── indent-blankline.lua
-│       ├── lsp.lua
-│       ├── lualine.lua
-│       ├── miscellaneous.lua
-│       ├── neotree.lua
-│       ├── rainbowbrackets.lua
-│       ├── telescope.lua
-│       └── treesitter.lua
+│   ├── plugins
+│   │   ├── alpha.lua
+│   │   ├── autocompletion.lua
+│   │   ├── autoformatting.lua
+│   │   ├── bufferline.lua
+│   │   ├── comment.lua
+│   │   ├── gitsigns.lua
+│   │   ├── indent-blankline.lua
+│   │   ├── lsp.lua
+│   │   ├── lualine.lua
+│   │   ├── mischellaneous.lua
+│   │   ├── neotree.lua
+│   │   ├── rainbowbrackets.lua
+│   │   ├── telescope.lua
+│   │   └── treesitter.lua
+│   └── themes
+│       ├── catppuccintheme.lua
+│       └── nordtheme.lua
+└── README.md
+
 ```
 
 ---
@@ -418,9 +429,9 @@ lazy.nvim will automatically install all plugins.
 
 # Colorscheme
 
-| Mapping      | Action              |
-| ------------ | ------------------- |
-| `<leader>bg` | Toggle transparency |
+| Mapping      | Action                |
+| ------------ | --------------------- |
+| `<leader>bg` | Toggle dark <-> light |
 
 ---
 

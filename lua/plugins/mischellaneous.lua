@@ -64,4 +64,26 @@ return {
     dependencies = 'nvim-treesitter/nvim-treesitter',
     config = true,
   },
+
+  -- Preview markdown live in web browser
+  {
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    ft = { 'markdown' },
+    build = function()
+      vim.fn['mkdp#util#install']()
+    end,
+    config = function()
+      -- define the custom browser function in Vimscript
+      vim.cmd [[
+      function! OpenMarkdownPreview(url)
+        " Start Firefox as a background job with URL
+        call jobstart(['firefox', '--new-window', a:url])
+      endfunction
+    ]]
+
+      vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+      vim.g.mkdp_theme = 'dark'
+    end,
+  },
 }

@@ -33,6 +33,9 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- Paste without overwriting registef
 vim.keymap.set('v', 'p', '"_dP', opts)
 
+-- Make <Del> delete without yanking
+vim.keymap.set('n', '<Del>', '"_x')
+
 -- =========================================================
 -- Window management
 -- =========================================================
@@ -78,6 +81,11 @@ vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
 -- CMD
 -- =========================================================
 vim.keymap.set('c', '<C-l>', '<C-y>', { noremap = true })
+
+-- =========================================================
+-- Mischellaneous
+-- =========================================================
+vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<CR>, opts') -- MarkdownPreview
 
 -- =========================================================
 -- Diagnostic keymaps (LSP)

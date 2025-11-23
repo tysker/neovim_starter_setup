@@ -3,7 +3,6 @@
 -- =======================================================
 require 'core.options' -- General editor settings
 require 'core.keymaps' -- Keymaps
-require 'core.snippets' -- Custom snippet definitions
 
 -- =======================================================
 -- Lazy.nvim bootstrap
@@ -39,6 +38,7 @@ require('lazy').setup({
   require 'plugins.lualine',
   require 'plugins.telescope',
   require 'plugins.lsp',
+  require 'plugins.luasnip',
   require 'plugins.autocompletion',
   require 'plugins.autoformatting',
   require 'plugins.gitsigns',

@@ -33,8 +33,16 @@ vim.keymap.set('v', '>', '>gv', opts)
 -- Paste without overwriting registef
 vim.keymap.set('v', 'p', '"_dP', opts)
 
--- Make <Del> delete without yanking
-vim.keymap.set('n', '<Del>', '"_x')
+-- Make <Del> delete without yank
+vim.keymap.set('n', '<Del>', '"_x', opts)
+
+-- Normal mode: move line up/down
+vim.keymap.set('n', '<A-j>', '<cmd>m .+1<CR>==', opts) -- move current line down
+vim.keymap.set('n', '<A-k>', '<cmd>m .-2<CR>==', opts) -- move current line up
+
+-- Visual mode: move line up/down
+vim.keymap.set('v', '<A-j>', ":m '>+1<CR>gv=gv", opts)
+vim.keymap.set('v', '<A-k>', ":m '<-2<CR>gv=gv", opts)
 
 -- =========================================================
 -- Window management

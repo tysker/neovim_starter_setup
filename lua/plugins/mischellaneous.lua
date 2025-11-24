@@ -1,10 +1,4 @@
 return {
-  -- ONLY if you use tmux panes + neovim splits
-  {
-    'christoomey/vim-tmux-navigator',
-    enabled = true, -- change to false if you don't need it
-  },
-
   -- Auto-detect tabstop + shiftwidth
   { 'tpope/vim-sleuth' },
 

@@ -8,8 +8,6 @@ local bo = vim.bo -- only for buffer-local options
 wo.number = true -- Show line numbers
 opt.relativenumber = true -- Show relative line numbers for easier movement
 opt.cursorline = true -- Highlight the current line
--- guicursor is a setting that describes cursor style per Vim mode
-opt.guicursor = 'n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50'
 
 wo.signcolumn = 'yes' -- Always show the sign column (LSP, git, errors)
 opt.numberwidth = 4 -- Width of the number column

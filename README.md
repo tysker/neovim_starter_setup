@@ -67,6 +67,8 @@ This configuration requires a few external tools depending on what languages you
 
 - `ripgrep` (required by Telescope)
 - `fd` / `fdfind`
+- `Node.js / npm` 
+- `Python`
 
 ### Fonts
 
@@ -100,8 +102,39 @@ git clone https://github.com/tysker/neovim_my_personal_setup.git ~/.config/nvim
 If you're on Debian/Ubuntu:
 
 ```
-sudo apt install ripgrep fd-find
+sudo apt update
+sudo apt install -y python3 python3-pip python3-venv build-essential
+sudo apt install curl grep ripgrep fd-find
+
 ```
+
+Node.js
+
+```
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 24
+
+# Verify the Node.js version:
+node -v # Should print "v24.11.1".
+
+# Verify npm version:
+npm -v # Should print "11.6.2".
+```
+
+Neovim
+
+```
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+sudo rm -rf /opt/nvim-linux-x86_64
+sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+```
+
 
 ### **4. Open Neovim**
 

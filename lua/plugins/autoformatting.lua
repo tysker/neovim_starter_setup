@@ -42,6 +42,7 @@ require('mason-null-ls').setup {
     'checkmake',                      -- Makefile linter
     'eslint_d',                       -- Fast JS/TS linter daemon
     'ansible-lint',		      -- Ansible Lint
+    'yamlint',			      -- Linter for yaml files
   },
 
   automatic_installation = true,

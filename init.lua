@@ -3,6 +3,7 @@
 -- =======================================================
 require 'core.options' -- General editor settings
 require 'core.keymaps' -- Keymaps
+require 'core.autocmds'
 
 -- =======================================================
 -- Lazy.nvim bootstrap

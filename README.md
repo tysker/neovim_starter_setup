@@ -32,6 +32,23 @@ This configuration is easy to install, easy to extend, and includes an extensive
 
 ---
 
+# Table of Contents
+
+- [Features](#features)
+- [External Dependencies](#external-dependencies)
+- [Installation](#installation)
+  - [Python Provider Setup](#python-provider-required-for-lsp-black-and-pylsp-mypy)
+  - [Backup Existing Config](#backup-your-existing-config)
+  - [Clone Repository](#clone-this-repository)
+  - [Install Recommended Packages](#install-recommended-packages)
+  - [Open Neovim](#open-neovim)
+- [Folder Structure](#folder-structure)
+- [Screenshots](#screenshots)
+- [Keymaps](#keymaps)
+- [Inspiration](#inspiration)
+- [License](#license)
+- [Support & Sharing](#support--sharing)
+
 ## 📦 Features
 
 - ⚡ **Fast startup** thanks to lazy-loaded plugins
@@ -85,7 +102,7 @@ When using the cattpuccin theme, it is possible to switch from mocca to light by
 
 ## 📥 Installation
 
-### **1. Backup your existing config**
+### **1. Backup your existing config (only if exist)**
 
 ```
 mv ~/.config/nvim ~/.config/nvim_backup
@@ -104,9 +121,8 @@ If you're on Debian/Ubuntu:
 ```
 sudo apt update
 sudo apt install -y python3 python3-pip python3-venv build-essential
-sudo python3 -m pip install --user pynvim
-export PATH="$HOME/.local/bin:$PATH"
 sudo apt install curl grep ripgrep fd-find
+export PATH="$HOME/.local/bin:$PATH"
 ```
 
 Node.js
@@ -131,6 +147,59 @@ npm -v # Should print "11.6.2".
 ```
 npm install -g neovim
 ```
+
+### 🐍 Python Provider (Required for LSP, Black, and pylsp-mypy)
+
+Debian/Ubuntu use a protected system Python (PEP 668), which prevents global `pip install`. To ensure Neovim always uses a consistent Python environment for LSP, formatting, and static typing, a dedicated Python virtual environment is recommended.
+
+### **Create a dedicated Neovim Python environment**
+
+```bash
+python3 -m venv ~/.local/nvim-python
+```
+
+Activate it:
+
+```bash
+source ~/.local/nvim-python/bin/activate
+```
+
+### **Install Neovim's Python client + LSP tools**
+
+```bash
+pip install pynvim
+pip install python-lsp-server
+pip install pylsp-mypy
+pip install black
+```
+
+### **Tell Neovim to use this environment**
+
+Add to your `init.lua`:
+
+```lua
+vim.g.python3_host_prog = "~/.local/nvim-python/bin/python"
+```
+
+### **Verify in Neovim**
+
+```
+:checkhealth
+```
+
+Expected output:
+
+```
+Python 3 provider
+  - Using: ~/.local/nvim-python/bin/python
+  - pynvim: OK
+```
+
+This ensures a stable setup with:
+
+- Ruff → linting & import sorting
+- pylsp + pylsp-mypy → full static typing
+- Black → formatting
 
 Neovim
 

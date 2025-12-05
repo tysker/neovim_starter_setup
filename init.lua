@@ -3,7 +3,9 @@
 -- =======================================================
 require 'core.options' -- General editor settings
 require 'core.keymaps' -- Keymaps
-require 'core.autocmds'
+
+-- Path to python interpreter
+vim.g.python3_host_prog = '~/.local/nvim-python/bin/python'
 
 -- =======================================================
 -- Lazy.nvim bootstrap

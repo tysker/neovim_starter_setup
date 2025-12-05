@@ -1,6 +1,6 @@
 # 🧠 LSP Overview
 
-Your configuration enables multiple language servers via mason + nvim-lspconfig.
+The configuration enables multiple language servers via mason + nvim-lspconfig.
 
 ---
 

@@ -1,7 +1,5 @@
 # 🔧 Complete Keymap Reference
 
-Synced from your actual config.
-
 ---
 
 ## General

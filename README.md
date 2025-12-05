@@ -161,4 +161,3 @@ Libbfd fix for Debian/Ubuntu →
 
 ---
 
-# Enjoy your fully modern Neovim setup!

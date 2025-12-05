@@ -1,620 +1,143 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/github/explore/main/topics/neovim/neovim.png" width="120" alt="Neovim Logo"/>
-</p>
-
-<h1 align="center">My Neovim Configuration</h1>
-
-<p align="center">
-  <strong>Fast · Modular · Lazy.nvim · LSP · Treesitter · Developer-Ready</strong>
+  <img src="https://raw.githubusercontent.com/github/explore/main/topics/neovim/neovim.png" width="110" alt="Neovim logo" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Neovim-0.9+-57A143?logo=neovim&logoColor=white" />
-  <img src="https://img.shields.io/badge/Lua-5.1%2B-blue?logo=lua&logoColor=white" />
-  <img src="https://img.shields.io/badge/Status-Active-blue" />
-  <img src="https://img.shields.io/badge/License-MIT-green" />
+  <img src="https://img.shields.io/badge/Neovim-0.9%2B-57A143?logo=neovim&logoColor=white" />
+  <img src="https://img.shields.io/badge/Made%20with-Lua-blue?logo=lua&logoColor=white" />
+  <img src="https://img.shields.io/badge/LSP-Enabled-green" />
+  <img src="https://img.shields.io/badge/Linux-Ready-orange?logo=linux&logoColor=white" />
+  <img src="https://img.shields.io/github/stars/tysker/neovim_my_personal_setup?style=social" />
 </p>
 
----
+# 🌿 Neovim Configuration
 
-# 🌟 Neovim Configuration (Lazy.nvim + Lua)
+A clean, fast, modular Neovim setup powered by **lazy.nvim**, Treesitter, LSP, Telescope, and a structured Lua configuration.
 
-A fast, structured, developer-friendly Neovim setup built with **lazy.nvim**, Lua, Treesitter, LSP, Telescope, and a clean modular plugin layout.
-Optimized for **web development (React/TypeScript)** and **general productivity**.
+Optimized for:
 
-This configuration is easy to install, easy to extend, and includes an extensive keymap reference for quick onboarding.
-
----
-
-| Dark Theme                                                               | Light Theme                                                |
-| ------------------------------------------------------------------------ | ---------------------------------------------------------- |
-| <img src="/images/cattpuccin_theme_dark.png" align="center" width="50%"> | <img src="/images/cattpuccin_theme_light.png" width="50%"> |
+- Web development (TypeScript, JavaScript, HTML/CSS, Tailwind)
+- Python (with full static typing + formatting)
+- Lua and general software engineering workflows
 
 ---
 
-# Table of Contents
+## 📚 Table of Contents
 
-- [Features](#features)
-- [External Dependencies](#external-dependencies)
-- [Installation](#installation)
-  - [Python Provider Setup](#python-provider-required-for-lsp-black-and-pylsp-mypy)
-  - [Backup Existing Config](#backup-your-existing-config)
-  - [Clone Repository](#clone-this-repository)
-  - [Install Recommended Packages](#install-recommended-packages)
-  - [Open Neovim](#open-neovim)
-- [Folder Structure](#folder-structure)
-- [Screenshots](#screenshots)
-- [Keymaps](#keymaps)
-- [Inspiration](#inspiration)
-- [License](#license)
-- [Support & Sharing](#support--sharing)
-
-## 📦 Features
-
-- ⚡ **Fast startup** thanks to lazy-loaded plugins
-- 🧭 **Neo-tree** for file navigation
-- 🔍 **Telescope** for fuzzy search, buffers, diagnostics, and more
-- 🧠 **LSP-ready** (TypeScript, Java, Lua, etc.)
-- 🎨 Clean theme, transparency toggle, UI improvements
-- 🧩 **Treesitter** for syntax, folding, and better parsing
-- ✂️ **nvim-cmp** autocompletion with LuaSnip
-- 🪝 **Git integration** with Gitsigns
-- 🪢 Intuitive, well-structured **keymaps**
-- 📁 Modular Lua plugin structure
-- 🔧 Includes formatter integration, auto-commands, and quality-of-life settings
+- [✨ Features](#-features)
+- [🚀 Getting Started](#-getting-started)
+- [📦 Installation](#-installation)
+- [🧩 Dependencies](#-dependencies)
+- [🐍 Python Support](#-python-support)
+- [📖 Documentation](#-documentation)
+- [🖼 Screenshots](#-screenshots)
 
 ---
 
-## 🔧 External Dependencies
+## ✨ Features
 
-This configuration requires a few external tools depending on what languages you want to work with.
-
-### Core Tools
-
-- `git`
-- `make`
-- `unzip`
-- C compiler (`gcc` or `clang`)
-- Clipboard tool:
-  - Linux: `xclip` or `xsel`
-  - Windows: `win32yank.exe`
-  - WSL: `clip.exe`
-
-### Recommended Search Tools
-
-- `ripgrep` (required by Telescope)
-- `fd` / `fdfind`
-- `Node.js / npm`
-- `Python`
-
-### Fonts
-
-- **Nerd Font** (for icons)  
-  If installed, set:
-  ```lua
-  vim.g.have_nerd_font = true
-  ```
-
-Inside the themes folder, you will find two themes. The cattpuccin is selected as default. You can always toggle the theme by uncomment the require field inside init.lua and vice versa.
-When using the cattpuccin theme, it is possible to switch from mocca to light by usingthe <leader>bg keys.
+- ⚡ Fast startup with lazy-loaded plugins  
+- 🧠 Treesitter syntax and structure parsing  
+- 🧩 Full LSP support (TypeScript, Lua, Python, etc.)  
+- ✍️ Autocompletion with nvim-cmp  
+- 🔍 Telescope fuzzy searching  
+- 📁 Neo-tree file explorer  
+- 🌈 Themed UI with Nerd Font support  
+- 🧵 Git integration and status signs  
+- 🐍 Python typing support via `pylsp-mypy`  
+- 🧹 Formatting via Black, Prettier, Stylua, etc.  
 
 ---
 
-## 📥 Installation
+## 🚀 Getting Started
 
-### **1. Backup your existing config (only if exist)**
+### 1. Backup your existing config
 
-```
+```bash
 mv ~/.config/nvim ~/.config/nvim_backup
 ```
 
-### **2. Clone this repository**
+### 2. Clone this configuration
 
-```
+```bash
 git clone https://github.com/tysker/neovim_my_personal_setup.git ~/.config/nvim
 ```
 
-### **3. Install recommended packages**
-
-If you're on Debian/Ubuntu:
-
-```
-sudo apt update
-sudo apt install -y python3 python3-pip python3-venv build-essential
-sudo apt install curl grep ripgrep fd-find
-export PATH="$HOME/.local/bin:$PATH"
-```
-
-Node.js
-
-```
-# Download and install nvm:
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-
-# in lieu of restarting the shell
-\. "$HOME/.nvm/nvm.sh"
-
-# Download and install Node.js:
-nvm install 24
-
-# Verify the Node.js version:
-node -v # Should print "v24.11.1".
-
-# Verify npm version:
-npm -v # Should print "11.6.2".
-```
-
-```
-npm install -g neovim
-```
-
-### 🐍 Python Provider (Required for LSP, Black, and pylsp-mypy)
-
-Debian/Ubuntu use a protected system Python (PEP 668), which prevents global `pip install`. To ensure Neovim always uses a consistent Python environment for LSP, formatting, and static typing, a dedicated Python virtual environment is recommended.
-
-### **Create a dedicated Neovim Python environment**
+### 3. Start Neovim
 
 ```bash
-python3 -m venv ~/.local/nvim-python
-```
-
-Activate it:
-
-```bash
-source ~/.local/nvim-python/bin/activate
-```
-
-### **Install Neovim's Python client + LSP tools**
-
-```bash
-pip install pynvim
-pip install python-lsp-server
-pip install pylsp-mypy
-pip install black
-```
-
-### **Tell Neovim to use this environment**
-
-Add to your `init.lua`:
-
-```lua
-vim.g.python3_host_prog = "~/.local/nvim-python/bin/python"
-```
-
-### **Verify in Neovim**
-
-```
-:checkhealth
-```
-
-Expected output:
-
-```
-Python 3 provider
-  - Using: ~/.local/nvim-python/bin/python
-  - pynvim: OK
-```
-
-This ensures a stable setup with:
-
-- Ruff → linting & import sorting
-- pylsp + pylsp-mypy → full static typing
-- Black → formatting
-
-Neovim
-
-```
-curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
-sudo rm -rf /opt/nvim-linux-x86_64
-sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
-```
-
-### **4. Open Neovim**
-
-```
 nvim
 ```
 
-lazy.nvim will automatically install all plugins.
+The plugin manager **lazy.nvim** will automatically install and set up all plugins.
+
+### 4. (Optional) Configure Python support
+
+If you use Python regularly, finish the setup in:  
+👉 [docs/python-setup.md](docs/python-setup.md)
 
 ---
 
-## 🗂️ Folder Structure
+## 📦 Installation
 
-```
-~/.config/nvim
-├── images
-│   ├── cattpuccin_theme_dark.png
-│   ├── cattpuccin_theme_light.png
-│   ├── nordtheme.png
-│   ├── nvim_pic_01.png
-│   ├── nvim_pic_02.png
-│   └── nvim_pic_03.png
-├── init.lua
-├── lazy-lock.json
-├── lua
-│   ├── core
-│   │   ├── keymaps.lua
-│   │   ├── options.lua
-│   │   └── snippets.lua
-│   ├── plugins
-│   │   ├── alpha.lua
-│   │   ├── autocompletion.lua
-│   │   ├── autoformatting.lua
-│   │   ├── bufferline.lua
-│   │   ├── comment.lua
-│   │   ├── gitsigns.lua
-│   │   ├── indent-blankline.lua
-│   │   ├── lsp.lua
-│   │   ├── lualine.lua
-│   │   ├── mischellaneous.lua
-│   │   ├── neotree.lua
-│   │   ├── rainbowbrackets.lua
-│   │   ├── telescope.lua
-│   │   └── treesitter.lua
-│   └── themes
-│       ├── catppuccintheme.lua
-│       └── nordtheme.lua
-└── README.md
+If you already use Neovim daily and just want the short version, this is all you need:
 
+```bash
+mv ~/.config/nvim ~/.config/nvim_backup
+git clone https://github.com/tysker/neovim_my_personal_setup.git ~/.config/nvim
+nvim
 ```
 
----
-
-## 🎮 Screenshots
-
-### UI & File Explorer
-
-<p align="center">
-  <img src="/images/nvim_pic_01.png" width="50%" />
-</p>
-
-### Telescope Integration
-
-<p align="center">
-  <img src="/images/nvim_pic_02.png" width="50%" />
-</p>
-
-### Plugin Structure Overview
-
-<p align="center">
-  <img src="/images/nvim_pic_03.png" width="30%" />
-</p>
+For full OS-level requirements, see:  
+👉 [docs/dependencies.md](docs/dependencies.md)
 
 ---
 
-## 🎹 Keymaps (Full Reference)
+## 🧩 Dependencies
 
-<details>
-<summary><strong>Click to expand keymap reference</strong></summary>
+Basic system tools, Node.js, and fonts are described in detail in:  
+👉 [docs/dependencies.md](docs/dependencies.md)
 
-# 📘 Neovim Keymap Reference
+You will find:
 
----
-
-# 📑 Table of Contents
-
-1. [Leader Keys](#leader-keys)
-2. [File Actions](#file-actions)
-3. [Editing Improvements](#editing-improvements)
-4. [Window Management](#window-management)
-5. [Buffers](#buffers)
-6. [Tabs](#tabs)
-7. [Line Wrapping](#toggle-line-wrapping)
-8. [Diagnostics (LSP)](#diagnostics-lsp)
-9. [Telescope](#telescope-search)
-10. [Neo-tree](#neo-tree-file-explorer)
-11. [Gitsigns](#git-signs)
-12. [Completion (nvim-cmp)](#completion-nvim-cmp)
-13. [Commenting](#commenting)
-14. [Colorscheme](#colorscheme)
-15. [LSP Actions](#lsp-actions)
-16. [Treesitter](#treesitter)
-17. [Snippets (LuaSnip)](#snippets-luasnip)
+- Recommended `apt` packages (ripgrep, fd-find, build tools, etc.)
+- Node.js setup via `nvm`
+- Nerd Font recommendation and `vim.g.have_nerd_font` usage
 
 ---
 
-# Leader Keys
+## 🐍 Python Support
 
-| Mapping         | Action             |
-| --------------- | ------------------ |
-| `<Space>`       | Leader key         |
-| `<Space>` (n/v) | Disabled (`<Nop>`) |
+This configuration is designed for a strong Python experience:
 
----
+- Global Neovim Python host in `~/.local/nvim-python`
+- Per-project virtualenv detection for LSP (`venv`, `.venv`, `env`)
+- `python-lsp-server` as the main LSP
+- `pylsp-mypy` for static typing
+- `black` for formatting
+- `ruff` for linting and import sorting
 
-# File Actions
-
-| Mapping      | Action                  |
-| ------------ | ----------------------- |
-| `<C-s>`      | Save file               |
-| `<leader>sn` | Save without formatting |
-| `<C-q>`      | Quit                    |
+All details and commands are captured in:  
+👉 [docs/python-setup.md](docs/python-setup.md)
 
 ---
 
-# Editing Improvements
+## 📖 Documentation
 
-| Mapping      | Action                      |
-| ------------ | --------------------------- |
-| `x`          | Delete char without yanking |
-| `<C-d>`      | Scroll down + center        |
-| `<C-u>`      | Scroll up + center          |
-| `n`          | Next search + center        |
-| `N`          | Previous search + center    |
-| `<` (visual) | Indent left                 |
-| `>` (visual) | Indent right                |
-| `p` (visual) | Paste without overwriting   |
+Additional documentation is located in the **docs/** folder:
 
----
-
-# Window Management
-
-## Splits
-
-| Mapping      | Action           |
-| ------------ | ---------------- |
-| `<leader>v`  | Vertical split   |
-| `<leader>h`  | Horizontal split |
-| `<leader>se` | Equalize splits  |
-| `<leader>xs` | Close split      |
-
-## Resize
-
-| Mapping | Action          |
-| ------- | --------------- |
-| `<M-a>` | Increase height |
-| `<M-z>` | Decrease height |
-| `<M-s>` | Decrease width  |
-| `<M-x>` | Increase width  |
-
-## Navigation
-
-| Mapping | Action     |
-| ------- | ---------- |
-| `<C-k>` | Move up    |
-| `<C-j>` | Move down  |
-| `<C-h>` | Move left  |
-| `<C-l>` | Move right |
+| Topic                      | File                                             |
+|----------------------------|--------------------------------------------------|
+| Python LSP Provider Setup  | [docs/python-setup.md](docs/python-setup.md)     |
+| Lua LS `.so` Fix (libbfd)  | [docs/lua-ls-fix.md](docs/lua-ls-fix.md)         |
+| System Dependencies        | [docs/dependencies.md](docs/dependencies.md)     |
+| Keymaps Overview           | [docs/keymaps.md](docs/keymaps.md)               |
+| Troubleshooting            | [docs/troubleshooting.md](docs/troubleshooting.md) |
+| Screenshots                | [docs/screenshots.md](docs/screenshots.md)       |
 
 ---
 
-# Buffers
+## 🖼 Screenshots
 
-| Mapping     | Action          |
-| ----------- | --------------- |
-| `<Tab>`     | Next buffer     |
-| `<S-Tab>`   | Previous buffer |
-| `<leader>x` | Delete buffer   |
-| `<leader>b` | New buffer      |
-
----
-
-# Tabs
-
-| Mapping      | Action       |
-| ------------ | ------------ |
-| `<leader>to` | New tab      |
-| `<leader>tx` | Close tab    |
-| `<leader>tn` | Next tab     |
-| `<leader>tp` | Previous tab |
-
----
-
-# Toggle Line Wrapping
-
-| Mapping      | Action          |
-| ------------ | --------------- |
-| `<leader>lw` | Toggle wrapping |
-
----
-
-# Diagnostics (LSP)
-
-| Mapping     | Action           |
-| ----------- | ---------------- |
-| `dn`        | Prev diagnostic  |
-| `nd`        | Next diagnostic  |
-| `<leader>d` | Diagnostic popup |
-| `<leader>q` | Diagnostic list  |
-
----
-
-# Telescope (Search)
-
-<details>
-<summary><strong>Click to expand</strong></summary>
-
-| Mapping            | Action                   |
-| ------------------ | ------------------------ |
-| `<leader>sh`       | Search help              |
-| `<leader>sk`       | Search keymaps           |
-| `<leader>sf`       | Search files             |
-| `<leader>ss`       | Telescope pickers        |
-| `<leader>sw`       | Search word              |
-| `<leader>sg`       | Live grep                |
-| `<leader>sd`       | Search diagnostics       |
-| `<leader>sr`       | Resume search            |
-| `<leader>s.`       | Recent files             |
-| `<leader><leader>` | Search open buffers      |
-| `<leader>/`        | Search in current buffer |
-| `<leader>s/`       | Grep open files only     |
-| `<leader>sn`       | Search Neovim config     |
-
-</details>
-
----
-
-# Neo-tree (File Explorer)
-
-| Mapping       | Action               |
-| ------------- | -------------------- |
-| `\`           | Reveal file          |
-| `<leader>e`   | Toggle file explorer |
-| `<leader>ngs` | Floating git status  |
-
----
-
-# Git Signs
-
-<details>
-<summary><strong>Click to expand</strong></summary>
-
-### Navigation
-
-| Mapping | Action        |
-| ------- | ------------- |
-| `]c`    | Next hunk     |
-| `[c`    | Previous hunk |
-
-### Hunk Actions
-
-| Mapping      | Action       |
-| ------------ | ------------ |
-| `<leader>hs` | Stage hunk   |
-| `<leader>hu` | Undo stage   |
-| `<leader>hr` | Reset hunk   |
-| `<leader>hR` | Reset buffer |
-| `<leader>hp` | Preview hunk |
-| `<leader>hb` | Toggle blame |
-| `<leader>hd` | Diff this    |
-| `<leader>ht` | Toggle signs |
-
-</details>
-
----
-
-# Completion (nvim-cmp)
-
-### Completion Navigation
-
-| Mapping     | Action             |
-| ----------- | ------------------ |
-| `<C-n>`     | Next item          |
-| `<C-p>`     | Previous item      |
-| `<C-b>`     | Scroll docs up     |
-| `<C-f>`     | Scroll docs down   |
-| `<C-Space>` | Trigger completion |
-
-### Accept
-
-| Mapping | Action             |
-| ------- | ------------------ |
-| `<CR>`  | Confirm completion |
-
-### Snippet Navigation
-
-| Mapping   | Action        |
-| --------- | ------------- |
-| `<C-l>`   | Jump forward  |
-| `<C-h>`   | Jump backward |
-| `<Tab>`   | Next / expand |
-| `<S-Tab>` | Previous      |
-
----
-
-# Commenting
-
-| Mapping     | Action         |
-| ----------- | -------------- |
-| `<C-_>`     | Toggle comment |
-| `<C-c>`     | Toggle comment |
-| `<C-/>`     | Toggle comment |
-| `<C-_>` (v) | Visual comment |
-| `<C-c>` (v) | Visual comment |
-| `<C-/>` (v) | Visual comment |
-
----
-
-# Colorscheme
-
-| Mapping      | Action                |
-| ------------ | --------------------- |
-| `<leader>bg` | Toggle dark <-> light |
-
----
-
-# LSP Actions
-
-<details>
-<summary><strong>Click to expand</strong></summary>
-
-| Mapping      | Action               |
-| ------------ | -------------------- |
-| `gd`         | Go to definition     |
-| `gD`         | Go to declaration    |
-| `gI`         | Go to implementation |
-| `gr`         | References           |
-| `<leader>D`  | Type definition      |
-| `<leader>ds` | Document symbols     |
-| `<leader>ws` | Workspace symbols    |
-| `<leader>rn` | Rename               |
-| `<leader>ca` | Code action          |
-| `<leader>th` | Toggle inlay hints   |
-
-</details>
-
----
-
-# Treesitter
-
-Provides:
-
-- Syntax highlighting
-- Smart indentation
-- Folding
-- Better parsing
-- Required by many plugins
-
-No keymaps needed.
-
----
-
-# Snippets (LuaSnip)
-
-<details>
-<summary><strong>Click to expand</strong></summary>
-
-| Mapping   | Action        |
-| --------- | ------------- |
-| `<C-l>`   | Jump forward  |
-| `<C-h>`   | Jump backward |
-| `<Tab>`   | Expand / next |
-| `<S-Tab>` | Previous      |
-
-Supports **VSCode-style snippets** via `friendly-snippets`.
-
-</details>
-
-</details>
-
----
-
-## 🌱 Inspiration
-
-This config is heavily inspired by:
-
-- [https://github.com/nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
-- [https://github.com/hendrikmi/neovim-kickstart-config](https://github.com/hendrikmi/neovim-kickstart-config)
-
-Great starting points for anyone exploring their own setup.
-
----
-
-## 📝 License
-
-MIT — free to use, modify, and share.
-
----
-
-## ⭐ Support & Sharing
-
-If you find this useful, consider:
-
-- starring the repo
-- opening issues or suggestions
-- sharing with others in the Neovim community
-
-Your input helps shape this config further.
-
----
+Preview screenshots and the full gallery are available here:  
+👉 [docs/screenshots.md](docs/screenshots.md)

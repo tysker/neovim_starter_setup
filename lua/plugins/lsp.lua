@@ -133,6 +133,9 @@ return {
       ts_ls = {},
       ruff = {},
       pylsp = {
+        on_new_config = function(new_config, root_dir)
+          new_config.cmd = { get_python_path(root_dir), '-m', 'pylsp' }
+        end,
         settings = {
           pylsp = {
             plugins = {
@@ -141,13 +144,9 @@ return {
               autopep8 = { enabled = false },
               yapf = { enabled = false },
               mccabe = { enabled = false },
-              -- enable full static typing
-              pylsp_mypy = {
-                enabled = true,
-                live_mode = true,
-              },
               pylsp_black = { enabled = false },
               pylsp_isort = { enabled = false },
+              pylsp_mypy = { enabled = true, live_mode = true },
             },
           },
         },

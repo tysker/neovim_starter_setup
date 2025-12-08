@@ -11,153 +11,151 @@
 
 # 🌿 Personal Neovim Configuration
 
-A fast, modern, fully‑typed developer setup built around:
+A fast, modern, fully-typed developer setup built around:
 
-- **lazy.nvim** plugin manager  
-- **Treesitter**  
-- **LSP + auto‑formatting + diagnostics**  
-- **Ruff + Mypy + Black** for Python  
-- **TypeScript & Lua** high‑quality support  
-- **Neo-tree, Telescope, Gitsigns**  
+- **lazy.nvim** plugin manager
+- **Treesitter**
+- **LSP + auto-formatting + diagnostics**
+- **Ruff + Pyright + Black** for Python
+- **TypeScript & Lua** high-quality support
+- **Neo-tree, Telescope, Gitsigns**
 - **Automatic Python venv detection**
 
-This repo is meant as a *clean, structured, extensible* Neovim configuration for daily professional development.
+This repo is meant as a clean, structured, extensible Neovim configuration for daily professional development.
 
 ---
 
 ## 📚 Table of Contents
-- [✨ Features](#-features)
-- [🚀 Getting Started](#-getting-started)
-- [📦 Installation](#-installation)
-- [🧩 Dependencies](#-dependencies)
-- [🐍 Python Support Overview](#-python-support-overview)
-- [🔧 Keymaps Overview](#-keymaps-overview)
-- [🧠 LSP Overview](#-lsp-overview)
-- [📖 Full Documentation](#-full-documentation)
+
+- Features
+- Getting Started
+- Installation
+- Dependencies
+- Python Support Overview
+- Keymaps Overview
+- LSP Overview
+- Full Documentation
 
 ---
 
 ## ✨ Features
 
 ### 🧠 LSP & Autocomplete
-- Per‑project Python venv selection  
-- Mypy type checking  
-- Ruff linting + import sorting  
-- Black / Prettier / Stylua formatters  
-- Lua LS (with Debian `libbfd` fix)
+
+- Pyright for Python
+- Ruff for linting and isort
+- Black for formatting
+- Automatic virtualenv selection
+- Lua LS, TypeScript, SQL, JSON, YAML, Docker, Terraform
+- Per-project settings respected automatically
 
 ### 🔍 Search & Navigation
+
 - Telescope pickers (files, live grep, buffers, diagnostics, symbols)
-- Neo‑tree file explorer
-- Smart folding, motion, and keymap consistency
+- Neo-tree file explorer
+- Smart motions and folds
 
 ### 🌈 UI & UX
-- Nerd Font support  
-- Treesitter highlighting  
-- Inline diagnostics  
-- Status column icons  
-- Gitsigns with hunk staging & preview
+
+- Nerd Font support
+- Treesitter highlighting
+- Inline diagnostics
+- Status column icons
+- Gitsigns for hunk navigation and staging
 
 ---
 
 ## 🚀 Getting Started
 
 ### 1. Backup your config
+
 ```bash
 mv ~/.config/nvim ~/.config/nvim_backup
 ```
 
 ### 2. Clone this configuration
+
 ```bash
 git clone https://github.com/tysker/neovim_my_personal_setup.git ~/.config/nvim
 ```
 
 ### 3. Launch Neovim
+
 ```bash
 nvim
 ```
 
-lazy.nvim will install all plugins automatically on first launch.
+lazy.nvim will install all plugins on first launch.
 
 ---
 
 ## 📦 Installation
 
-You can install the full dependency stack using:
+Install system dependencies →  
+`docs/dependencies.md`
 
-👉 `docs/dependencies.md`
-
-After installing system dependencies, reload Neovim:
-
-```bash
-nvim
-```
+Then launch Neovim.
 
 ---
 
 ## 🧩 Dependencies
 
-System tools, Nerd Fonts, Node.js, and Python provider setup →  
-👉 `docs/dependencies.md`
+Includes:
+
+- System packages
+- Nerd Fonts
+- Node.js
+- Global Neovim Python provider
+
+See → `docs/dependencies.md`
 
 ---
 
 ## 🐍 Python Support Overview
 
-This config provides a complete Python environment:
+This configuration includes a **modern Python toolchain**:
 
-- `pylsp` as language server  
-- `pylsp-mypy` for static typing  
-- Ruff for linting & isort  
-- Black for code formatting  
-- Per‑project **venv detection**  
-- Correct interpreter passed through LSP dynamically  
+- **Pyright** – language intelligence + type checking
+- **Ruff** – linting + import organization
+- **Black** – formatting
+- **Automatic venv detection** (`./venv`, `./.venv`)
+- Everything runs in your _project’s_ environment
 
-Full instructions in →  
-👉 `docs/python-setup.md`
+Full docs → `docs/python-setup.md`
 
 ---
 
 ## 🔧 Keymaps Overview
 
-A fully synced keymap reference lives here:
-
-👉 `docs/keymaps.md`
+See → `docs/keymaps.md`
 
 ---
 
 ## 🧠 LSP Overview
 
-The LSP system includes:
+Language servers included:
 
-- TypeScript (`ts_ls`)
-- Python (`pylsp`)
-- Ruff (linting)
-- HTML / CSS / Tailwind
-- Docker
+- Python (Pyright + Ruff)
+- TypeScript / JavaScript
+- Lua LS
 - Terraform
+- Docker
 - JSON / YAML
 - SQL
-- Lua LS (configured with runtime library)
+- HTML / CSS / Tailwind
 
-Additional troubleshooting →  
-👉 `docs/troubleshooting.md`  
-Libbfd fix for Debian/Ubuntu →  
-👉 `docs/lua-ls-fix.md`
+More info → `docs/lsp.md`
 
 ---
 
 ## 📖 Full Documentation
 
-| Topic | File |
-|-------|------|
-| Python Setup | docs/python-setup.md |
-| Lua LS Fix | docs/lua-ls-fix.md |
-| System Dependencies | docs/dependencies.md |
-| Keymaps | docs/keymaps.md |
-| LSP Overview | docs/lsp.md |
-| Troubleshooting | docs/troubleshooting.md |
-| Screenshots | docs/screenshots.md |
-
----
-
+| Topic               | File                    |
+| ------------------- | ----------------------- |
+| Python Setup        | docs/python-setup.md    |
+| Lua LS Fix          | docs/lua-ls-fix.md      |
+| System Dependencies | docs/dependencies.md    |
+| Keymaps             | docs/keymaps.md         |
+| LSP Overview        | docs/lsp.md             |
+| Troubleshooting     | docs/troubleshooting.md |
+| Screenshots         | docs/screenshots.md     |

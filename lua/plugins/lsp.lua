@@ -129,27 +129,37 @@ return {
     -- - filetypes (table): Override the default list of associated filetypes for the server
     -- - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     -- - settings (table): Override the default settings passed when initializing the server.
+
+    -- Python venv auto-detection
+    local function get_python_path(workspace)
+      for _, pattern in ipairs { 'venv', '.venv' } do
+        local python = workspace .. '/' .. pattern .. '/bin/python'
+        if vim.fn.executable(python) == 1 then
+          return python
+        end
+      end
+      return 'python3'
+    end
+
     local servers = {
-      ts_ls = {},
       ruff = {},
-      pylsp = {
-        on_new_config = function(new_config, root_dir)
-          new_config.cmd = { get_python_path(root_dir), '-m', 'pylsp' }
-        end,
+
+      pyright = {
+        cmd = { get_python_path(vim.fn.getcwd()), '-m', 'pyright' },
         settings = {
-          pylsp = {
-            plugins = {
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              autopep8 = { enabled = false },
-              yapf = { enabled = false },
-              mccabe = { enabled = false },
-              pylsp_black = { enabled = false },
-              pylsp_isort = { enabled = false },
-              pylsp_mypy = { enabled = true, live_mode = true },
+          python = {
+            pythonPath = get_python_path(vim.fn.getcwd()),
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = 'workspace',
+              typeCheckingMode = 'basic', -- 'off' for zero warnings
             },
           },
         },
+      },
+      pylsp = {
+        enabled = false, -- disable entirely
       },
       html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},

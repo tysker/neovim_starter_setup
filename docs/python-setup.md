@@ -1,18 +1,29 @@
 # 🐍 Python Setup for Neovim
 
-This configuration provides a complete, fully typed Python development workflow.
+This Neovim configuration provides a **modern, fast, project-isolated** Python development environment built on:
+
+- **Pyright** — type checking, autocomplete, navigation  
+- **Ruff** — linting + import sorting  
+- **Black** — opinionated formatting  
+- **Automatic virtual environment detection**  
+- **Zero global pollution** (all tools run inside the project venv)
+
+This file explains how everything works and how to set it up.
 
 ---
 
-# 1. Create the Neovim Python Provider (Global)
+## 1. Global Python Provider for Neovim
+
+Neovim needs a Python interpreter for internal plugins.  
+This environment does **not** affect the LSP or project dependencies.
 
 ```bash
 python3 -m venv ~/.local/nvim-python
 source ~/.local/nvim-python/bin/activate
-pip install pynvim python-lsp-server pylsp-mypy ruff black
+pip install pynvim
 ```
 
-Add this to `init.lua`:
+Add to `init.lua`:
 
 ```lua
 vim.g.python3_host_prog = "~/.local/nvim-python/bin/python"
@@ -20,72 +31,132 @@ vim.g.python3_host_prog = "~/.local/nvim-python/bin/python"
 
 ---
 
-# 2. Per‑project Virtual Environment Detection
+## 2. Automatic Per-Project Virtualenv Detection
 
-Your `lsp.lua` includes:
+The `lsp.lua` includes logic that detects a Python interpreter in the project:
 
 ```lua
 local function get_python_path(workspace)
-  for _, pattern in ipairs { "venv", ".venv", "env" } do
-    local python = workspace .. "/" .. pattern .. "/bin/python"
+  for _, pattern in ipairs { 'venv', '.venv' } do
+    local python = workspace .. '/' .. pattern .. '/bin/python'
     if vim.fn.executable(python) == 1 then
       return python
     end
   end
-  return vim.fn.exepath("python3") or "python3"
+  return 'python3'
 end
 ```
 
 This ensures:
 
-- Autocomplete sees project-installed packages  
-- Mypy uses correct stubs  
-- Ruff respects local configs  
+- Pyright uses your project’s interpreter  
+- Ruff respects your project configuration  
 - No need to install libraries globally  
+- Every project stays isolated  
 
 ---
 
-# 3. pylsp Configuration
+## 3. Pyright Configuration (LSP)
 
-From your actual config:
+The Neovim setup starts **Pyright** with the correct interpreter:
 
 ```lua
-pylsp = {
-  on_new_config = function(new_config, root_dir)
-    new_config.cmd = { get_python_path(root_dir), "-m", "pylsp" }
-  end,
+pyright = {
+  cmd = { get_python_path(vim.fn.getcwd()), '-m', 'pyright' },
   settings = {
-    pylsp = {
-      plugins = {
-        pyflakes = { enabled = false },
-        pycodestyle = { enabled = false },
-        autopep8 = { enabled = false },
-        yapf = { enabled = false },
-        mccabe = { enabled = false },
-        pylsp_black = { enabled = false },
-        pylsp_isort = { enabled = false },
-        pylsp_mypy = { enabled = true, live_mode = true }
-      }
-    }
-  }
+    python = {
+      pythonPath = get_python_path(vim.fn.getcwd()),
+      analysis = {
+        autoSearchPaths = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode = 'workspace',
+        typeCheckingMode = 'basic',
+      },
+    },
+  },
 }
 ```
 
+Pyright provides:
+
+- Type checking  
+- IntelliSense / autocomplete  
+- Jump-to-definition  
+- Hover documentation  
+- Workspace-aware analysis  
+
 ---
 
-# 4. Project Setup Example
+## 4. Ruff LSP
+
+Ruff runs as a separate LSP server:
+
+```lua
+ruff = {}
+```
+
+Ruff gives:
+
+- Fast linting  
+- Import sorting (isort-compatible)  
+- Quick fixes  
+- Code actions for common issues  
+
+---
+
+## 5. Black Formatting
+
+Installed through Mason as:
+
+```
+black
+```
+
+Formatting can be triggered via:
+
+```
+:Format
+```
+
+Or `Ctrl-s`
+
+---
+
+## 6. Recommended Project Setup
+
+Inside each Python project:
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
-pip install pandas requests ruff mypy black
+pip install pyright ruff black
 ```
 
-Open the project:
+Then open the project:
 
 ```bash
 nvim .
 ```
 
-pylsp will automatically use `./venv/bin/python`.
+Neovim will automatically:
+
+- Detect `./venv/bin/python`  
+- Start Pyright with correct interpreter  
+- Launch Ruff for linting  
+- Format via Black  
+
+Everything remains clean and project-local.
+
+---
+
+## 7. Summary
+
+The Python stack looks like this:
+
+| Component | Tool | Purpose |
+|----------|------|---------|
+| LSP | **Pyright** | Types, autocomplete, navigation |
+| Linting | **Ruff** | Lint + import sorting |
+| Formatting | **Black** | Code formatting |
+| Env detection | Custom `get_python_path` | Always use correct venv |
 

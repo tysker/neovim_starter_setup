@@ -51,12 +51,24 @@ return {
     end,
   },
 
-  -- adds highlights for text filetypes, like markdown, orgmode, and neorg
-  -- the plugin is used in connection with the colortheme plugin (headlines)
   {
-    'lukas-reineke/headlines.nvim',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-    config = true,
+    'MeanderingProgrammer/render-markdown.nvim',
+    ft = { 'markdown', 'quarto' },
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-mini/mini.nvim',
+    },
+
+    opts = {
+      render_modes = { 'n', 'c', 't' }, -- normal, command, terminal
+      heading = {
+        enabled = false,
+      },
+      code = {
+        enabled = true,
+        border = 'rounded',
+      },
+    },
   },
 
   -- Preview markdown live in web browser

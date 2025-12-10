@@ -19,6 +19,8 @@ return {
         'neogitstatus',
         'NvimTree',
         'Trouble',
+        'markdown',
+        'quarto',
       },
     },
   },

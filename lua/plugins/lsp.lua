@@ -142,33 +142,17 @@ return {
     end
 
     local servers = {
-      ruff = {},
-
-      pyright = {
-        cmd = { get_python_path(vim.fn.getcwd()), '-m', 'pyright' },
-        settings = {
-          python = {
-            pythonPath = get_python_path(vim.fn.getcwd()),
-            analysis = {
-              autoSearchPaths = true,
-              useLibraryCodeForTypes = true,
-              diagnosticMode = 'workspace',
-              typeCheckingMode = 'basic', -- 'off' for zero warnings
-            },
-          },
-        },
-      },
-      pylsp = {
-        enabled = false, -- disable entirely
-      },
-      html = { filetypes = { 'html', 'twig', 'hbs' } },
       cssls = {},
-      tailwindcss = {},
+
       dockerls = {},
-      sqlls = {},
-      terraformls = {},
+
+      html = {
+        -- Add Twig and Handlebars support
+        filetypes = { 'html', 'twig', 'hbs' },
+      },
+
       jsonls = {},
-      yamlls = {},
+
       lua_ls = {
         settings = {
           Lua = {
@@ -190,6 +174,35 @@ return {
           },
         },
       },
+
+      pylsp = {
+        enabled = false, -- explicitly disabled
+      },
+
+      pyright = {
+        cmd = { get_python_path(vim.fn.getcwd()), '-m', 'pyright' },
+        settings = {
+          python = {
+            pythonPath = get_python_path(vim.fn.getcwd()),
+            analysis = {
+              autoSearchPaths = true,
+              useLibraryCodeForTypes = true,
+              diagnosticMode = 'workspace',
+              typeCheckingMode = 'basic',
+            },
+          },
+        },
+      },
+
+      ruff = {},
+
+      sqlls = {},
+
+      tailwindcss = {},
+
+      terraformls = {},
+
+      yamlls = {},
     }
 
     -- Ensure the servers and tools above are installed

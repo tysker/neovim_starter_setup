@@ -28,6 +28,7 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 ## 📚 Table of Contents
 
 - Features
+- Architecture Overview
 - Getting Started
 - Installation
 - Dependencies
@@ -63,6 +64,87 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Inline diagnostics
 - Status column icons
 - Gitsigns for hunk navigation and staging
+
+---
+
+## 🧱 Neovim Architecture
+
+This configuration is structured into **clear, single-purpose layers**.
+Each layer answers one question and avoids overlapping responsibilities.
+
+The result:
+
+- predictable formatting
+- consistent diagnostics
+- easy debugging
+- simple extension over time
+
+---
+
+### High-level responsibilities
+
+| Layer                    | Responsibility                           |
+| ------------------------ | ---------------------------------------- |
+| **Conform**              | Format on save                           |
+| **LSP (lspconfig)**      | Language intelligence + core diagnostics |
+| **none-ls**              | Extra diagnostics only                   |
+| **Mason**                | Installing tools                         |
+| **mason-tool-installer** | Enforcing required tools                 |
+| **Tree-sitter**          | Syntax parsing & highlighting            |
+
+---
+
+```
+┌─────────────┐
+│ Tree-sitter │ → syntax, highlighting, indent
+└──────┬──────┘
+       │
+┌──────▼──────┐
+│     LSP     │ → meaning, diagnostics, navigation
+└──────┬──────┘
+       │
+┌──────▼──────┐
+│   Conform   │ → formatting on save
+└──────┬──────┘
+       │
+┌──────▼──────┐
+│   none-ls   │ → extra diagnostics (linters)
+└──────┬──────┘
+       │
+┌──────▼──────┐
+│    Mason    │ → installs all external tools
+└─────────────┘
+```
+
+---
+
+### What `ensure_installed` means (important)
+
+Multiple plugins use `ensure_installed`, but they install **different things**.
+
+| Layer           | Installs…         | Purpose                            |
+| --------------- | ----------------- | ---------------------------------- |
+| **Tree-sitter** | Grammar parsers   | Highlighting, indentation, folding |
+| **Mason**       | External binaries | LSPs, formatters, linters          |
+| **Conform**     | Nothing           | Uses installed formatters          |
+| **none-ls**     | Nothing           | Uses installed linters             |
+
+Having multiple `ensure_installed` blocks is **expected and correct**.
+
+---
+
+### Mental model
+
+- **Tree-sitter** → _“How do I read this file?”_
+- **LSP** → _“What does this code mean?”_
+- **Conform** → _“How should this code look?”_
+- **none-ls** → _“Is this code sane?”_
+- **Mason** → _“Do I have the tools?”_
+
+Each layer does **one job only**.  
+That’s what keeps the configuration stable.
+
+### How the layers interact
 
 ---
 
@@ -160,3 +242,4 @@ More info → `docs/lsp.md`
 | LSP Overview        | docs/lsp.md             |
 | Troubleshooting     | docs/troubleshooting.md |
 | Screenshots         | docs/screenshots.md     |
+| OpenSCAD            | docs/openscad.md        |

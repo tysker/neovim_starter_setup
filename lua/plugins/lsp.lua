@@ -175,6 +175,8 @@ return {
         },
       },
 
+      openscad_lsp = {},
+
       pylsp = {
         enabled = false, -- explicitly disabled
       },

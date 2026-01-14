@@ -33,11 +33,10 @@ npm install -g neovim
 # 3. Fonts
 
 Install a Nerd Font (JetBrainsMono recommended).  
-Terminal → set font to *JetBrainsMono Nerd Font*.
+Terminal → set font to _JetBrainsMono Nerd Font_.
 
 Enable in config:
 
 ```lua
 vim.g.have_nerd_font = true
 ```
-

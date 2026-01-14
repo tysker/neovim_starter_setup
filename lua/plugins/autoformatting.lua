@@ -9,45 +9,44 @@ return {
     local formatting = null_ls.builtins.formatting -- to setup formatters
     local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
--- Formatters & linters for mason to install
-require('mason-null-ls').setup {
-  ensure_installed = {
+    -- Formatters & linters for mason to install
+    require('mason-null-ls').setup {
+      ensure_installed = {
 
-    --------------------------------------------------------------------------
-    -- LSP SERVERS
-    --------------------------------------------------------------------------
-    'ansible-language-server',        -- Ansible playbooks, inventories, roles
-    'css-lsp',                        -- CSS language features
-    'dockerfile-language-server',     -- Dockerfile completions & diagnostics
-    'html-lsp',                       -- HTML tags, attributes, completions
-    'json-lsp',                       -- JSON schema validation & assistance
-    'lua-language-server',            -- Lua (Neovim configs, plugins, etc.)
-    'python-lsp-server',              -- Python LSP (rope, pycodestyle, etc.)
-    'sqlls',                          -- SQL queries & dialect support
-    'tailwindcss-language-server',    -- Tailwind CSS class IntelliSense
-    'terraform-ls',                   -- Terraform blocks, providers, modules
-    'typescript-language-server',     -- JS/TS via tsserver
-    'yaml-language-server',           -- YAML validation & schema support
+        --------------------------------------------------------------------------
+        -- LSP SERVERS
+        --------------------------------------------------------------------------
+        'ansible-language-server', -- Ansible playbooks, inventories, roles
+        'css-lsp', -- CSS language features
+        'dockerfile-language-server', -- Dockerfile completions & diagnostics
+        'html-lsp', -- HTML tags, attributes, completions
+        'json-lsp', -- JSON schema validation & assistance
+        'lua-language-server', -- Lua (Neovim configs, plugins, etc.)
+        'python-lsp-server', -- Python LSP (rope, pycodestyle, etc.)
+        'sqlls', -- SQL queries & dialect support
+        'tailwindcss-language-server', -- Tailwind CSS class IntelliSense
+        'terraform-ls', -- Terraform blocks, providers, modules
+        'typescript-language-server', -- JS/TS via tsserver
+        'yaml-language-server', -- YAML validation & schema support
 
-    --------------------------------------------------------------------------
-    -- FORMATTERS
-    --------------------------------------------------------------------------
-    'prettierd',                      -- Fast Prettier daemon for web files
-    'shfmt',                          -- Shell script formatter
-    'stylua',                         -- Lua code formatter
+        --------------------------------------------------------------------------
+        -- FORMATTERS
+        --------------------------------------------------------------------------
+        'prettierd', -- Fast Prettier daemon for web files
+        'shfmt', -- Shell script formatter
+        'stylua', -- Lua code formatter
 
-    --------------------------------------------------------------------------
-    -- LINTERS / DIAGNOSTICS
-    --------------------------------------------------------------------------
-    'checkmake',                      -- Makefile linter
-    'eslint_d',                       -- Fast JS/TS linter daemon
-    'ansible-lint',		      -- Ansible Lint
-    'yamlint',			      -- Linter for yaml files
-  },
+        --------------------------------------------------------------------------
+        -- LINTERS / DIAGNOSTICS
+        --------------------------------------------------------------------------
+        'checkmake', -- Makefile linter
+        'eslint_d', -- Fast JS/TS linter daemon
+        'ansible-lint', -- Ansible Lint
+        'yamlint', -- Linter for yaml files
+      },
 
-  automatic_installation = true,
-}
-
+      automatic_installation = true,
+    }
 
     local sources = {
       diagnostics.checkmake,

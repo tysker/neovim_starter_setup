@@ -109,3 +109,5 @@ end, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Open diagnostic popup' })
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, { desc = 'LSP hover' })

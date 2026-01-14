@@ -31,6 +31,7 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Getting Started
 - Installation
 - Dependencies
+- Formatting
 - Python Support Overview
 - Keymaps Overview
 - LSP Overview

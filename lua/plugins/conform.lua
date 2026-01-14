@@ -21,10 +21,14 @@ return {
         typescriptreact = { 'prettierd' },
         css = { 'prettierd' },
         scss = { 'prettierd' },
+        html = { 'prettierd' },
 
         json = { 'prettierd' },
         yaml = { 'prettierd' },
         markdown = { 'prettierd' },
+
+        sh = { 'shfmt' },
+        cfg = { 'prettierd' },
 
         openscad = { 'openscad_format' },
       },

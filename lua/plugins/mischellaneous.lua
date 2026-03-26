@@ -92,4 +92,11 @@ return {
       vim.g.mkdp_theme = 'dark'
     end,
   },
+
+  {
+    'kylechui/nvim-surround',
+    version = '*',
+    event = 'VeryLazy',
+    config = true,
+  },
 }

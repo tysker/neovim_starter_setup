@@ -1,18 +1,19 @@
 return {
   'nvim-lualine/lualine.nvim',
+  dependencies = { 'catppuccin/nvim' },
+
   config = function()
     local mode = {
       'mode',
       fmt = function(str)
         return ' ' .. str
-        -- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
       end,
     }
 
     local filename = {
       'filename',
-      file_status = true, -- displays file status (readonly status, modified status)
-      path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
+      file_status = true,
+      path = 0,
     }
 
     local hide_in_width = function()
@@ -26,26 +27,21 @@ return {
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       colored = false,
       update_in_insert = false,
-      always_visible = true, -- i may have to change that back to false!
+      always_visible = true,
       cond = hide_in_width,
     }
 
     local diff = {
       'diff',
       colored = false,
-      symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
+      symbols = { added = ' ', modified = ' ', removed = ' ' },
       cond = hide_in_width,
     }
 
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        -- theme = "nord", -- Set theme based on environment variable
-        theme = 'catppuccin', -- Set theme based on environment variable
-        -- Some useful glyphs:
-        -- https://www.nerdfonts.com/cheat-sheet
-        --          
-        --section_separators = { left = '', right = '' },
+        theme = require 'catppuccin.utils.lualine'(),
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         disabled_filetypes = { 'alpha', 'neo-tree' },

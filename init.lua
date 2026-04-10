@@ -38,6 +38,7 @@ require('lazy').setup({
   require 'plugins.alpha',
   require 'plugins.autocompletion',
   require 'plugins.bufferline',
+  require 'plugins.codecompanion',
   require 'plugins.comment',
   require 'plugins.conform',
   require 'plugins.diagnostics',

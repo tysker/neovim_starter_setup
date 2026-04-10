@@ -11,6 +11,28 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 local opts = { noremap = true, silent = true }
 
 -- =========================================================
+-- AI codecompanion shortcuts
+-- =========================================================
+vim.keymap.set('v', '<leader>ai', ":'<,'>CodeCompanion<CR>", {
+  desc = 'AI inline edit',
+})
+vim.keymap.set('v', '<leader>ar', function()
+  vim.cmd "'<,'>CodeCompanion Refactor this code for readability and best practices"
+end, { desc = 'Refactor code' })
+
+vim.keymap.set('v', '<leader>ao', function()
+  vim.cmd "'<,'>CodeCompanion Optimize this code for performance"
+end, { desc = 'Optimize code' })
+
+vim.keymap.set('v', '<leader>at', function()
+  vim.cmd "'<,'>CodeCompanion Add unit tests for this code"
+end, { desc = 'Generate tests' })
+
+vim.keymap.set('v', '<leader>ae', function()
+  vim.cmd "'<,'>CodeCompanion Explain this code briefly"
+end, { desc = 'Explain code' })
+
+-- =========================================================
 -- File actions
 -- =========================================================
 vim.keymap.set('n', '<C-s>', '<cmd>w<CR>', opts) -- Save file

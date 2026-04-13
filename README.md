@@ -34,6 +34,7 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Dependencies
 - Formatting
 - Python Support Overview
+- AI Assistance
 - Keymaps Overview
 - LSP Overview
 - Full Documentation
@@ -50,6 +51,13 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Automatic virtualenv selection
 - Lua LS, TypeScript, SQL, JSON, YAML, Docker, Terraform
 - Per-project settings respected automatically
+
+### 🤖 AI Assistance
+
+- CodeCompanion integration for AI-powered coding help
+- Inline code editing on visual selections
+- Quick prompts for refactoring, optimization, test generation, and code explanation
+- Configured to use the Mistral API via `MISTRAL_API_KEY`
 
 ### 🔍 Search & Navigation
 
@@ -205,6 +213,38 @@ This configuration includes a **modern Python toolchain**:
 - Everything runs in your _project’s_ environment
 
 Full docs → `docs/python-setup.md`
+
+---
+
+## 🤖 AI Assistance
+
+This configuration includes [CodeCompanion](https://github.com/olimorris/codecompanion.nvim) for AI-assisted development workflows.
+
+Current setup:
+
+- Uses the **Mistral API**
+- Supports **chat** and **inline editing**
+- Best suited for refactoring, code explanation, optimization, and test generation
+
+### Environment variable
+
+Set your API key before launching Neovim:
+
+```bash
+export MISTRAL_API_KEY="your_api_key_here"
+```
+
+Included AI actions
+
+Visual mode selections can be sent to CodeCompanion with dedicated shortcuts for:
+
+inline edits
+refactoring
+optimization
+unit test generation
+short code explanations
+
+See docs/keymaps.md for the exact mappings.
 
 ---
 

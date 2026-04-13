@@ -21,7 +21,9 @@ return {
           solid = false,
         },
         integrations = {
-          lualine = true,
+          lualine = {
+            enabled = true,
+          },
         },
       }
 

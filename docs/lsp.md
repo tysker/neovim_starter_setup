@@ -8,7 +8,7 @@ The configuration enables multiple language servers via mason + nvim-lspconfig.
 
 | Language       | Server      |
 | -------------- | ----------- |
-| TypeScript     | ts_ls       |
+| TypeScript     | vtsls       |
 | Python         | pyright     |
 | Python linting | ruff        |
 | HTML           | html        |
@@ -20,6 +20,14 @@ The configuration enables multiple language servers via mason + nvim-lspconfig.
 | JSON           | jsonls      |
 | YAML           | yamlls      |
 | Lua            | lua_ls      |
+
+---
+
+## TypeScript / JavaScript
+
+This configuration uses `vtsls` for JavaScript and TypeScript support.
+
+See → `docs/react.md` for React-specific features and usage.
 
 ---
 
@@ -38,7 +46,6 @@ The configuration enables multiple language servers via mason + nvim-lspconfig.
 - Neovim runtime paths included
 - Diagnostics tuned (`vim` global allowed)
 - Format disabled (Stylua used instead)
-- Includes Debian libbfd fix (see docs/lua-ls-fix.md)
 
 ---
 

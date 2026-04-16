@@ -37,10 +37,12 @@ require('lazy').setup({
   -- FIRST ARGUMENT: Plugin specs
   require 'plugins.alpha',
   require 'plugins.autocompletion',
+  require 'plugins.autotag',
   require 'plugins.bufferline',
   require 'plugins.codecompanion',
   require 'plugins.comment',
   require 'plugins.conform',
+  require 'plugins.devicons',
   require 'plugins.diagnostics',
   require 'plugins.gitsigns',
   require 'plugins.indent-blankline',

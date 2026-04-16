@@ -1,50 +1,52 @@
 return {
   'hrsh7th/nvim-cmp',
+
   dependencies = {
-    -- Snippet Engine & its associated nvim-cmp source
+    -- Snippet engine
     {
       'L3MON4D3/LuaSnip',
       build = (function()
-        -- Build Step is needed for regex support in snippets.
-        -- This step is not supported in many windows environments.
-        -- Remove the below condition to re-enable on windows.
+        -- Enable regex snippet support when available
         if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
           return
         end
         return 'make install_jsregexp'
       end)(),
       dependencies = {
-        -- `friendly-snippets` contains a variety of premade snippets.
-        --    See the README about individual language/framework/plugin snippets:
-        --    https://github.com/rafamadriz/friendly-snippets
         {
           'rafamadriz/friendly-snippets',
           config = function()
+            -- Load VS Code style snippets lazily
             require('luasnip.loaders.from_vscode').lazy_load()
 
-            local ls = require 'luasnip'
-
-            ls.filetype_extend('javascriptreact', { 'html', 'javascript' })
-            ls.filetype_extend('typescriptreact', { 'html', 'typescript', 'javascript' })
+            -- Extend React filetypes with HTML/JS snippets
+            local luasnip = require 'luasnip'
+            luasnip.filetype_extend('javascriptreact', { 'html', 'javascript' })
+            luasnip.filetype_extend('typescriptreact', { 'html', 'typescript', 'javascript' })
           end,
         },
       },
     },
-    'saadparwaiz1/cmp_luasnip',
 
-    -- Adds other completion capabilities.
-    --  nvim-cmp does not ship with all sources by default. They are split
-    --  into multiple repos for maintenance purposes.
+    -- Completion sources
+    'saadparwaiz1/cmp_luasnip',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
   },
+
   config = function()
-    -- See `:help cmp`
     local cmp = require 'cmp'
     local luasnip = require 'luasnip'
+
+    -- =========================================================
+    -- Snippet setup
+    -- =========================================================
     luasnip.config.setup {}
 
+    -- =========================================================
+    -- Completion item icons
+    -- =========================================================
     local kind_icons = {
       Text = '󰉿',
       Method = 'm',
@@ -72,74 +74,78 @@ return {
       Operator = '󰆕',
       TypeParameter = '󰊄',
     }
+
     cmp.setup {
+      -- Expand snippet bodies returned by LSP/snippets
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
       },
-      completion = { completeopt = 'menu,menuone,preview' },
 
-      -- For an understanding of why these mappings were
-      -- chosen, you will need to read `:help ins-completion`
-      --
-      -- No, but seriously. Please read `:help ins-completion`, it is really good!
+      -- Show completion menu without inserting immediately
+      completion = {
+        completeopt = 'menu,menuone,preview',
+        -- completeopt = 'menu,menuone,noinsert',
+      },
+
+      -- Prefer LSP results for imports and language-aware suggestions
+      sorting = {
+        priority_weight = 2,
+        comparators = {
+          cmp.config.compare.offset,
+          cmp.config.compare.exact,
+          cmp.config.compare.score,
+          function(entry1, entry2)
+            if entry1.source.name == 'nvim_lsp' and entry2.source.name ~= 'nvim_lsp' then
+              return true
+            elseif entry2.source.name == 'nvim_lsp' and entry1.source.name ~= 'nvim_lsp' then
+              return false
+            end
+          end,
+          cmp.config.compare.kind,
+          cmp.config.compare.sort_text,
+          cmp.config.compare.length,
+          cmp.config.compare.order,
+        },
+      },
+
+      -- =========================================================
+      -- Completion and snippet keymaps
+      -- =========================================================
       mapping = cmp.mapping.preset.insert {
-        -- Select the [n]ext item
         ['<C-n>'] = cmp.mapping.select_next_item(),
-        -- Select the [p]revious item
         ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-        -- Scroll the documentation window [b]ack / [f]orward
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete {},
 
-        -- Accept ([y]es) the completion.
-        --  This will auto-import if your LSP supports it.
-        --  This will expand snippets if the LSP sent a snippet.
-        --['<C-y>'] = cmp.mapping.confirm { select = true },
-
+        -- Confirm the selected completion item
         ['<CR>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
-            cmp.confirm { select = true }
+            cmp.confirm {
+              behavior = cmp.ConfirmBehavior.Replace,
+              select = true,
+            }
           else
-            fallback() -- normal Enter key
+            fallback()
           end
         end),
 
-        -- If you prefer more traditional completion keymaps,
-        -- you can uncomment the following lines
-        --['<CR>'] = cmp.mapping.confirm { select = true },
-        --['<Tab>'] = cmp.mapping.select_next_item(),
-        --['<S-Tab>'] = cmp.mapping.select_prev_item(),
-
-        -- Manually trigger a completion from nvim-cmp.
-        --  Generally you don't need this, because nvim-cmp will display
-        --  completions whenever it has completion options available.
-        ['<C-Space>'] = cmp.mapping.complete {},
-
-        -- Think of <c-l> as moving to the right of your snippet expansion.
-        --  So if you have a snippet that's like:
-        --  function $name($args)
-        --    $body
-        --  end
-        --
-        -- <c-l> will move you to the right of each of the expansion locations.
-        -- <c-h> is similar, except moving you backwards.
+        -- Jump forward/backward through snippet fields
         ['<C-l>'] = cmp.mapping(function()
           if luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
           end
         end, { 'i', 's' }),
+
         ['<C-h>'] = cmp.mapping(function()
           if luasnip.locally_jumpable(-1) then
             luasnip.jump(-1)
           end
         end, { 'i', 's' }),
 
-        -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
-        -- https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
-        -- Select next/previous item with Tab / Shift + Tab
+        -- Tab navigates completion first, then snippets
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
@@ -149,6 +155,7 @@ return {
             fallback()
           end
         end, { 'i', 's' }),
+
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
@@ -159,21 +166,28 @@ return {
           end
         end, { 'i', 's' }),
       },
+
+      -- =========================================================
+      -- Completion sources
+      -- =========================================================
       sources = {
         {
           name = 'lazydev',
-          -- set group index to 0 to skip loading LuaLS completions as lazydev recommends it
-          group_index = 0,
+          group_index = 0, -- avoid duplicate LuaLS suggestions
         },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
-        { name = 'buffer' },
+        { name = 'buffer', keyword_length = 3 },
         { name = 'path' },
       },
+
+      -- =========================================================
+      -- Menu formatting
+      -- =========================================================
       formatting = {
         fields = { 'kind', 'abbr', 'menu' },
         format = function(entry, vim_item)
-          vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
+          vim_item.kind = kind_icons[vim_item.kind] or ''
           vim_item.menu = ({
             nvim_lsp = '[LSP]',
             luasnip = '[Snippet]',

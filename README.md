@@ -38,6 +38,7 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Keymaps Overview
 - LSP Overview
 - Full Documentation
+- React / TypeScript
 
 ---
 
@@ -64,6 +65,21 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Telescope pickers (files, live grep, buffers, diagnostics, symbols)
 - Neo-tree file explorer
 - Smart motions and folds
+
+### ⚛️ React / TypeScript Support
+
+- Full TypeScript and React support via `vtsls`
+- Automatic imports via completion and code actions
+- JSX/TSX tag auto-closing and renaming
+- Tailwind CSS integration
+- Formatting via Prettier (optional, via Conform)
+
+#### Features
+
+- Auto-import React components and hooks
+- Rename JSX tags with automatic closing tag updates
+- Code actions for organizing imports
+- Intelligent completion via LSP + nvim-cmp
 
 ### 🌈 UI & UX
 
@@ -234,15 +250,15 @@ Set your API key before launching Neovim:
 export MISTRAL_API_KEY="your_api_key_here"
 ```
 
-Included AI actions
+### Included AI actions
 
-Visual mode selections can be sent to CodeCompanion with dedicated shortcuts for:
+Visual mode selections can be used for:
 
-inline edits
-refactoring
-optimization
-unit test generation
-short code explanations
+- inline edits
+- refactoring
+- optimization
+- unit test generation
+- code explanation
 
 See docs/keymaps.md for the exact mappings.
 
@@ -283,3 +299,4 @@ More info → `docs/lsp.md`
 | Troubleshooting     | docs/troubleshooting.md |
 | Screenshots         | docs/screenshots.md     |
 | OpenSCAD            | docs/openscad.md        |
+| React Setup         | docs/react.md           |

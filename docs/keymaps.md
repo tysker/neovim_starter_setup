@@ -6,40 +6,64 @@
 
 - `<leader>` = Space
 - `<localleader>` = Space
-- `<C-s>` — Save
+
+---
+
+## File Actions
+
+- `<C-s>` — Save file
+- `<leader>sn` — Save without formatting
 - `<C-q>` — Quit
 
 ---
 
 ## AI / CodeCompanion
 
+- `<leader>aa` (normal, visual) — Open CodeCompanion actions menu
+- `<leader>ac` (normal, visual) — Toggle CodeCompanion chat
 - `<leader>ai` (visual) — AI inline edit
 - `<leader>ar` (visual) — Refactor selected code
 - `<leader>ao` (visual) — Optimize selected code
-- `<leader>at` (visual) — Generate unit tests for selected code
-- `<leader>ae` (visual) — Explain selected code briefly
+- `<leader>at` (visual) — Generate unit tests
+- `<leader>ae` (visual) — Explain selected code
+- `<leader>as` (visual) — Review selected code like a senior engineer
+- `<leader>am` (visual) — Rewrite selected code to be more idiomatic
+- `<leader>al` (visual) — Add useful logging
 
 ---
 
 ## Movement / Editing
 
-- `x` — Delete without yank
-- `<Del>` — Delete without yank
-- `<C-d>` / `<C-u>` — Move half‑page (centered)
-- `n` / `N` — Search next/prev
-- `<A-j>` / `<A-k>` — Move line or selection
-- `<` / `>` (visual) — Indent stay selected
-- `p` (visual) — Paste without overwriting
+- `x` — Delete character without yanking
+- `<C-d>` — Scroll down and center cursor
+- `<C-u>` — Scroll up and center cursor
+- `n` — Next search result and center
+- `N` — Previous search result and center
+- `<` (visual) — Indent left and stay in visual mode
+- `>` (visual) — Indent right and stay in visual mode
+- `p` (visual) — Paste without overwriting default register
+- `<Del>` — Delete without yanking
+- `<A-j>` (normal) — Move current line down
+- `<A-k>` (normal) — Move current line up
+- `<A-j>` (visual) — Move selected lines down
+- `<A-k>` (visual) — Move selected lines up
 
 ---
 
-## Windows
+## Window Management
 
 - `<leader>v` — Vertical split
 - `<leader>h` — Horizontal split
-- `<leader>se` — Equalize
-- `<leader>xs` — Close split
-- `<C-h/j/k/l>` — Move between windows
+- `<leader>se` — Equalize split sizes
+- `<leader>xs` — Close current split
+- `<M-a>` — Increase window height
+- `<M-z>` — Decrease window height
+- `<M-s>` — Decrease window width
+- `<M-x>` — Increase window width
+- `<C-k>` — Move to split above
+- `<C-j>` — Move to split below
+- `<C-h>` — Move to left split
+- `<C-l>` — Move to right split
 
 ---
 
@@ -61,12 +85,31 @@
 
 ---
 
-## Diagnostics
+## Toggles
 
-- `dn` — Previous diagnostic (with float)
-- `nd` — Next diagnostic
-- `<leader>d` — Diagnostic popup
-- `<leader>q` — Quickfix list
+- `<leader>lw` — Toggle line wrapping
+
+---
+
+## Command-line Mode
+
+- `<C-l>` — Accept suggestion / insert completion
+
+---
+
+## Miscellaneous
+
+- `<leader>mp` — Open Markdown preview
+
+---
+
+## Diagnostics / LSP
+
+- `dn` — Go to previous diagnostic
+- `nd` — Go to next diagnostic
+- `<leader>d` — Show diagnostic popup
+- `<leader>q` — Open diagnostics location list
+- `K` — Show LSP hover information
 
 ---
 

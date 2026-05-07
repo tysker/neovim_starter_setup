@@ -58,7 +58,7 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - CodeCompanion integration for AI-powered coding help
 - Inline code editing on visual selections
 - Quick prompts for refactoring, optimization, test generation, and code explanation
-- Configured to use the Mistral API via `MISTRAL_API_KEY`
+- Configured to use the **Anthropic API** via `ANTHROPIC_API_KEY` (Claude Sonnet)
 
 ### 🔍 Search & Navigation
 
@@ -80,6 +80,12 @@ This repo is meant as a clean, structured, extensible Neovim configuration for d
 - Rename JSX tags with automatic closing tag updates
 - Code actions for organizing imports
 - Intelligent completion via LSP + nvim-cmp
+
+### 🎨 Theme Selector
+
+- Dynamic theme switching via Telescope picker (`<leader>ct`)
+- Selected theme persists across sessions
+- Available themes: Catppuccin Light, Catppuccin Dark, Nord, Fluoromachine, Gruvbox Light, Gruvbox Dark
 
 ### 🌈 UI & UX
 
@@ -238,7 +244,7 @@ This configuration includes [CodeCompanion](https://github.com/olimorris/codecom
 
 Current setup:
 
-- Uses the **Mistral API**
+- Uses the **Anthropic API** (Claude Sonnet)
 - Supports **chat** and **inline editing**
 - Best suited for refactoring, code explanation, optimization, and test generation
 
@@ -247,8 +253,10 @@ Current setup:
 Set your API key before launching Neovim:
 
 ```bash
-export MISTRAL_API_KEY="your_api_key_here"
+export ANTHROPIC_API_KEY="your_api_key_here"
 ```
+
+Get an API key from [console.anthropic.com](https://console.anthropic.com).
 
 ### Included AI actions
 
@@ -300,3 +308,4 @@ More info → `docs/lsp.md`
 | Screenshots         | docs/screenshots.md     |
 | OpenSCAD            | docs/openscad.md        |
 | React Setup         | docs/react.md           |
+| Themes              | docs/themes.md          |

@@ -31,7 +31,7 @@ vim.opt.rtp:prepend(lazypath)
 
 -- =======================================================
 -- Lazy.nvim plugin loader
--- ===========================f===========================
+-- =======================================================
 require('lazy').setup({
 
   -- FIRST ARGUMENT: Plugin specs
@@ -58,7 +58,9 @@ require('lazy').setup({
 
   -- Themes
   require 'themes.catppuccintheme',
-  -- require 'plugins.nordtheme',
+  require 'themes.fluoromachine',
+  require 'themes.gruvbox',
+  require 'themes.nordtheme',
 }, {
 
   -- =====================================================
@@ -145,3 +147,6 @@ require('lazy').setup({
   --------------------------------------------------------
   concurrency = 16,
 })
+
+-- Load theme selector
+require 'themes.selector'

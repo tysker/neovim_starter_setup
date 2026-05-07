@@ -43,7 +43,5 @@ return {
       is_light = not is_light
       setup_catppuccin(is_light)
     end
-
-    vim.keymap.set('n', '<leader>bg', toggle_theme, { noremap = true, silent = true })
   end,
 }

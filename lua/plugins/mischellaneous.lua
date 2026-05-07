@@ -24,6 +24,13 @@ return {
     config = true,
   },
 
+  -- Headlines
+  {
+    'lukas-reineke/headlines.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = true, -- Enable default setup
+  },
+
   -- Highlight TODO, HACK, BUG, NOTE etc.
   {
     'folke/todo-comments.nvim',

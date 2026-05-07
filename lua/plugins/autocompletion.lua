@@ -17,7 +17,10 @@ return {
           'rafamadriz/friendly-snippets',
           config = function()
             -- Load VS Code style snippets lazily
-            require('luasnip.loaders.from_vscode').lazy_load()
+            require('luasnip.loaders.from_vscode').lazy_load {
+              -- issue with friendly-snippets inside a for-loop
+              exclude = { 'sh', 'bash' }, -- don't load bash snippets
+            }
 
             -- Extend React filetypes with HTML/JS snippets
             local luasnip = require 'luasnip'
@@ -125,7 +128,7 @@ return {
           if cmp.visible() then
             cmp.confirm {
               behavior = cmp.ConfirmBehavior.Replace,
-              select = true,
+              select = false,
             }
           else
             fallback()

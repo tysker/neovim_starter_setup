@@ -88,6 +88,7 @@
 ## Toggles
 
 - `<leader>lw` — Toggle line wrapping
+- `<leader>ct` — Open theme selector (Telescope picker)
 
 ---
 

@@ -19,7 +19,7 @@ return {
             -- Load VS Code style snippets lazily
             require('luasnip.loaders.from_vscode').lazy_load {
               -- issue with friendly-snippets inside a for-loop
-              exclude = { 'sh', 'bash' }, -- don't load bash snippets
+              -- exclude = { 'sh', 'bash' }, -- don't load bash snippets
             }
 
             -- Extend React filetypes with HTML/JS snippets
@@ -174,10 +174,6 @@ return {
       -- Completion sources
       -- =========================================================
       sources = {
-        {
-          name = 'lazydev',
-          group_index = 0, -- avoid duplicate LuaLS suggestions
-        },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
         { name = 'buffer', keyword_length = 3 },

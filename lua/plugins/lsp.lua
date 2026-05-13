@@ -5,9 +5,6 @@ return {
     -- Package manager for LSP servers and external tools
     { 'mason-org/mason.nvim', config = true },
 
-    -- Maps Mason package names to lspconfig server names
-    'mason-org/mason-lspconfig.nvim',
-
     -- Ensures required LSPs and tools are installed
     'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -155,11 +152,6 @@ return {
 
       openscad_lsp = {},
 
-      -- Disabled in favor of pyright + ruff
-      pylsp = {
-        enabled = false,
-      },
-
       -- Python LSP using project-local virtualenv when available
       pyright = {
         cmd = { get_python_path(vim.fn.getcwd()), '-m', 'pyright' },
@@ -194,19 +186,6 @@ return {
       },
 
       yamlls = {},
-    }
-
-    -- =========================================================
-    -- Ensure required tools are installed
-    -- =========================================================
-    local ensure_installed = vim.tbl_keys(servers)
-    vim.list_extend(ensure_installed, {
-      'stylua',
-      'black',
-    })
-
-    require('mason-tool-installer').setup {
-      ensure_installed = ensure_installed,
     }
 
     -- =========================================================

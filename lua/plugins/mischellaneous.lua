@@ -52,7 +52,7 @@ return {
     'echasnovski/mini.bufremove',
     version = false,
     config = function()
-      vim.keymap.set('n', '<leader>x', function()
+      vim.keymap.set('n', '<leader>w', function()
         require('mini.bufremove').delete()
       end, { noremap = true, silent = true })
     end,
@@ -63,7 +63,7 @@ return {
     ft = { 'markdown', 'quarto' },
     dependencies = {
       'nvim-treesitter/nvim-treesitter',
-      'nvim-mini/mini.nvim',
+      'echasnovski/mini.nvim',
     },
 
     opts = {
